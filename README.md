@@ -1,2 +1,2 @@
 # NestJs-Sec-kit
-NestJs authentication and authorization starter
+NestJs Security starter
