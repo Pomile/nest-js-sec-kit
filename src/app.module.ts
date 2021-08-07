@@ -6,7 +6,7 @@ import { ConfigModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigService } from './config/config';
 import { Connection } from 'typeorm';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +19,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       useClass: ConfigService,
     }),
     UsersModule,
+    AuthModule,
     ConfigModule.register({ env: 'production | development' }),
   ],
   controllers: [AppController],

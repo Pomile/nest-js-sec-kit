@@ -24,13 +24,11 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[NestJs-Authentication](https://docs.nestjs.com/security/authentication) starter.
 
 ### Prerequisites
 
 * [MySQL](https://www.mysql.com/downloads/) is the world's most popular open source database.
-* [Postgres](https://www.postgresql.org/download/) is a powerful, open source object-relational database
-* [MongoDB](https://www.mongodb.com/try/download/community) is a document database with the scalability and flexibility
 * [Node](https://nodejs.org/en/download/) is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 * [vscode](https://code.visualstudio.com/) is a Text Editor
 
