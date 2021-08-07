@@ -1,15 +1,15 @@
-import { Controller, Post, Body, HttpCode, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Controller, Post, HttpCode, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CredentialAuthDto } from './dto/credential-auth.dto';
+import { LocalAuthGuard } from './local-auth.guard';
 
 @Controller('api/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @HttpCode(200)
   @Post('/login')
-  login(@Body() authDto: CredentialAuthDto) {
-    return this.authService.validateUser(authDto.username, authDto.password);
+  @HttpCode(200)
+  @UseGuards(LocalAuthGuard)
+  login(@Request() req) {
+    return this.authService.login(req.user);
   }
 }
