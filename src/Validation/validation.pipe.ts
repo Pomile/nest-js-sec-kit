@@ -6,9 +6,11 @@ import {
 } from '@nestjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
+import { ObjectSchema } from 'joi';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
+  constructor(private schema: ObjectSchema) {}
   async transform(value: any, { metatype }: ArgumentMetadata) {
     if (!metatype || !this.toValidate(metatype)) {
       return value;
@@ -16,7 +18,7 @@ export class ValidationPipe implements PipeTransform<any> {
     const object = plainToClass(metatype, value);
     const errors = await validate(object);
     if (errors.length > 0) {
-      throw new BadRequestException('Validation failed');
+      throw new BadRequestException(errors, 'Validation failed');
     }
     return value;
   }
