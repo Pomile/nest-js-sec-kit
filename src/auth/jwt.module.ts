@@ -16,7 +16,7 @@ export class CustomJwtModule {
     const config = new ConfigService({ env: options.env });
     return JwtModule.register({
       secret: config.get('APP_SECRET'),
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '300s' },
     });
   }
 }

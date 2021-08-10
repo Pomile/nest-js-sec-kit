@@ -55,6 +55,8 @@ Make sure there is no space after the values of each variables
   DATABASE_USERNAME=
   DATABASE_PASSWORD=
   DATABASE_PORT=
+  APP_SECRET=
+  APP_JWT_EXPIRATION=
 
 ```
 Database module config example in app.module.ts
