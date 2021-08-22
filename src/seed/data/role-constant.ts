@@ -10,7 +10,7 @@ export const roles = [
     description: 'User administrator priviledges',
   },
   {
-    name: 'Role Administrator',
+    name: 'RBAC Administrator',
     slug: 'role-administrator',
     description: 'Role administrator priviledges',
   },
