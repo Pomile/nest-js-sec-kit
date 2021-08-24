@@ -7,6 +7,9 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigService } from './config/config';
 import { Connection } from 'typeorm';
 import { AuthModule } from './auth/auth.module';
+import { RoleModule } from './role/role.module';
+import { PermissionModule } from './permission/permission.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -21,6 +24,9 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     AuthModule,
     ConfigModule.register({ env: 'production | development' }),
+    RoleModule,
+    PermissionModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

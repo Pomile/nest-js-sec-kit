@@ -1,36 +1,28 @@
-import { Role } from 'src/role/entities/role.entity';
+import { Permission } from 'src/permission/entities/permission.entity';
+
 import {
-  Entity,
   Column,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   CreateDateColumn,
-  Index,
+  UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  Entity,
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class Role {
   @PrimaryGeneratedColumn()
-  id?: number;
+  id: number;
   @Column()
-  firstName?: string;
+  name: string;
   @Column()
-  lastName?: string;
+  slug: string;
   @Column()
-  password?: string;
-  @Index({ unique: true })
-  @Column()
-  email?: string;
-  @Index({ unique: true })
-  @Column()
-  phone?: string;
-
-  @ManyToMany(() => Role)
+  description: string;
+  @ManyToMany(() => Permission)
   @JoinTable()
-  roles: Role[];
-
+  permissions: Permission[];
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',

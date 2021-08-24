@@ -1,0 +1,5 @@
+export class CreatePermissionDto {
+  name: string;
+  slug: string;
+  description: string;
+}
