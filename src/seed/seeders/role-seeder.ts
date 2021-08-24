@@ -2,6 +2,7 @@ import { Repository } from 'typeorm';
 import { roles } from '../data/role-constant';
 import { Role } from 'src/role/entities/role.entity';
 import { Permission } from 'src/permission/entities/permission.entity';
+import { Permissions } from 'src/permission/permission.enum';
 
 export class RoleSeeder {
   constructor(
@@ -9,24 +10,24 @@ export class RoleSeeder {
     private permissionRepository: Repository<Permission>,
   ) {
     const userAdminitratorPermissions: string[] = [
-      'create user',
-      'read user',
-      'update user',
-      'delete user',
+      Permissions.createUser,
+      Permissions.readUser,
+      Permissions.updateUser,
+      Permissions.deleteUser,
     ];
 
     const roleAdminitratorPermissions: string[] = [
-      'create role',
-      'read role',
-      'update role',
-      'delete role',
+      Permissions.createRole,
+      Permissions.readRole,
+      Permissions.updateRole,
+      Permissions.deleteRole,
     ];
 
     const permissionAdminitratorPermissions: string[] = [
-      'create permission',
-      'read permission',
-      'update permission',
-      'delete permission',
+      Permissions.createPermission,
+      Permissions.readPermission,
+      Permissions.updatePermission,
+      Permissions.deletePermission,
     ];
     roles.forEach(async (roleObject) => {
       let names;
