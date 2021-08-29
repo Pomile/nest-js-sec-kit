@@ -1,4 +1,6 @@
+import * as bcrypt from 'bcrypt';
 import { Role } from 'src/role/entities/role.entity';
+import { BeforeUpdate } from 'typeorm';
 import {
   Entity,
   Column,
@@ -8,6 +10,7 @@ import {
   Index,
   ManyToMany,
   JoinTable,
+  BeforeInsert,
 } from 'typeorm';
 
 @Entity()
@@ -42,4 +45,14 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
   updated_at?: Date;
+
+  async hashpassword(password) {
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(password, saltOrRounds);
+    return hash;
+  }
+  async comparePassword(password) {
+    const isMatch = await bcrypt.compare(password, this.password);
+    return isMatch;
+  }
 }

@@ -15,7 +15,11 @@ export class UsersService {
     });
     if (user)
       throw new HttpException('User already exists', HttpStatus.CONFLICT);
+    const entity = new User();
+    createUserDto.password = await entity.hashpassword(createUserDto.password);
     const newUser = await this.userRepository.save(createUserDto);
+    delete newUser.password;
+    delete newUser.confirmPassword;
     return newUser;
   }
   async findAll() {
