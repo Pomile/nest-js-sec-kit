@@ -1,6 +1,8 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as csurf from 'csurf';
+import * as helmet from 'helmet';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -9,7 +11,7 @@ async function bootstrap() {
     .setTitle('Nest Starter')
     .setDescription('The NestJs Starter API')
     .setVersion('1.0')
-    .addTag('users', "Everything about users")
+    .addTag('users', 'Everything about users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
@@ -20,6 +22,8 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  await app.use(helmet());
+  await app.use(csurf());
   await app.enableCors();
   await app.listen(3000);
 }
